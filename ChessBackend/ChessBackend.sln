@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessBackend", "ChessBackend\ChessBackend.csproj", "{A9699E92-7FEC-4D4B-A300-881FA61377CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessBackend.Services", "ChessBackend.Services\ChessBackend.Services.csproj", "{0D99556C-B94A-4AD2-9907-A8B90DFFF819}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessBackend.Services", "ChessBackend.Services\ChessBackend.Services.csproj", "{0D99556C-B94A-4AD2-9907-A8B90DFFF819}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessBackend.Data", "ChessBackend.Data\ChessBackend.Data.csproj", "{BEB36534-B299-43FE-A576-5C5B980C0626}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessBackend.Data", "ChessBackend.Data\ChessBackend.Data.csproj", "{BEB36534-B299-43FE-A576-5C5B980C0626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessBackend.Test", "ChessBackend.Test\ChessBackend.Test.csproj", "{0673B430-3E64-42D1-A29B-EAF49AF96ADC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{BEB36534-B299-43FE-A576-5C5B980C0626}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEB36534-B299-43FE-A576-5C5B980C0626}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEB36534-B299-43FE-A576-5C5B980C0626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0673B430-3E64-42D1-A29B-EAF49AF96ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0673B430-3E64-42D1-A29B-EAF49AF96ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0673B430-3E64-42D1-A29B-EAF49AF96ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0673B430-3E64-42D1-A29B-EAF49AF96ADC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
