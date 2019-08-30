@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ChessGame\Resources\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

@@ -1673,6 +1673,16 @@
         "build": {
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "ChessBackend.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/ChessBackend.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChessBackend.Services.dll": {}
+        }
       }
     }
   },
@@ -5838,10 +5848,16 @@
         "xunit.runner.visualstudio.2.4.0.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "ChessBackend.Services/1.0.0": {
+      "type": "project",
+      "path": "../ChessBackend.Services/ChessBackend.Services.csproj",
+      "msbuildProject": "../ChessBackend.Services/ChessBackend.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "ChessBackend.Services >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 15.9.0",
       "Microsoft.NETCore.App >= 2.2.0",
       "xunit >= 2.4.0",
@@ -5877,7 +5893,11 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\CodingProjects\\Chess\\chessgame-backend\\ChessBackend\\ChessBackend.Services\\ChessBackend.Services.csproj": {
+              "projectPath": "D:\\CodingProjects\\Chess\\chessgame-backend\\ChessBackend\\ChessBackend.Services\\ChessBackend.Services.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

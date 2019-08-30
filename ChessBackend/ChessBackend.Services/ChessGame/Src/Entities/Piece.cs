@@ -15,13 +15,13 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
         public Piece(Color color, ChessPiece chessPiece, int value)
         {
             Color = color;
-            ChessPiece = ChessPiece;
+            ChessPiece = chessPiece;
             Value = value;
         }
 
         public virtual string GetPGN()
         {
-            return ChessPiece.ToString()[0] + "";
+            return this.ChessPiece.ToString()[0] + "";
         }
     }
 }

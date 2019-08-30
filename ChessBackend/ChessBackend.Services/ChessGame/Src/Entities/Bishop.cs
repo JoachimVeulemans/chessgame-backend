@@ -5,8 +5,8 @@ using ChessBackend.Services.ChessGame.Src.Enums;
 
 namespace ChessBackend.Services.ChessGame.Src.Entities
 {
-    public class Bischop : Piece
+    public class Bishop : Piece
     {
-        public Bischop(Color color) : base(color, ChessPiece.BISHOP, 3) { }
+        public Bishop(Color color) : base(color, ChessPiece.BISHOP, 3) { }
     }
 }
