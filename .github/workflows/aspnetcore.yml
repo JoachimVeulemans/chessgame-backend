@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     
     steps:
@@ -17,4 +16,4 @@ jobs:
       with:
         dotnet-version: 2.2.108
     - name: Build with dotnet
-      run: dotnet build --project .\..\..\ChessBackend\ChessBackend\ChessBackend.csproj --configuration Release
+      run: dotnet build ./ChessBackend --configuration Release
