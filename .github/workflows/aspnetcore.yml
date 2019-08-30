@@ -6,7 +6,7 @@ on:
     - master
 
 jobs:
-  build on Ubuntu:
+  build_on_Ubuntu:
     runs-on: ubuntu-latest
     
     steps:
@@ -18,7 +18,7 @@ jobs:
     - name: Build with dotnet
       run: dotnet build ./ChessBackend --configuration Release
 
-  build on Docker:  
+  build_on_Docker:  
     runs-on: ubuntu-latest
 
     steps:
