@@ -6,7 +6,7 @@ on:
     - master
 
 jobs:
-  build:
+  build on Ubuntu:
     runs-on: ubuntu-latest
     
     steps:
@@ -17,3 +17,11 @@ jobs:
         dotnet-version: 2.2.108
     - name: Build with dotnet
       run: dotnet build ./ChessBackend --configuration Release
+
+  build on Docker:  
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
