@@ -1,4 +1,4 @@
-name: ASP.NET Core Build
+name: xUnit tests
 
 on:
   pull_request:
@@ -15,5 +15,5 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
-    - name: Build with dotnet
-      run: dotnet build ./ChessBackend --configuration Release
+    - name: Run xUnit tests with dotnet
+      run: dotnet test ./ChessBackend
