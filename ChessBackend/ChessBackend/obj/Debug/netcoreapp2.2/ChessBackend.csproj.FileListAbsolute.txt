@@ -1,0 +1,14 @@
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\bin\Debug\netcoreapp2.2\ChessBackend.deps.json
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\bin\Debug\netcoreapp2.2\ChessBackend.runtimeconfig.json
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\bin\Debug\netcoreapp2.2\ChessBackend.runtimeconfig.dev.json
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\bin\Debug\netcoreapp2.2\ChessBackend.dll
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\bin\Debug\netcoreapp2.2\ChessBackend.pdb
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\obj\Debug\netcoreapp2.2\ChessBackend.csprojAssemblyReference.cache
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\obj\Debug\netcoreapp2.2\ChessBackend.csproj.CoreCompileInputs.cache
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\obj\Debug\netcoreapp2.2\ChessBackend.RazorAssemblyInfo.cache
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\obj\Debug\netcoreapp2.2\ChessBackend.RazorAssemblyInfo.cs
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\obj\Debug\netcoreapp2.2\ChessBackend.AssemblyInfoInputs.cache
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\obj\Debug\netcoreapp2.2\ChessBackend.AssemblyInfo.cs
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\obj\Debug\netcoreapp2.2\ChessBackend.RazorTargetAssemblyInfo.cache
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\obj\Debug\netcoreapp2.2\ChessBackend.dll
+D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend\obj\Debug\netcoreapp2.2\ChessBackend.pdb
