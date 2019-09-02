@@ -1,9 +1,0 @@
-D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend.Data\bin\Debug\netcoreapp2.2\ChessBackend.Data.deps.json
-D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend.Data\bin\Debug\netcoreapp2.2\ChessBackend.Data.dll
-D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend.Data\bin\Debug\netcoreapp2.2\ChessBackend.Data.pdb
-D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend.Data\obj\Debug\netcoreapp2.2\ChessBackend.Data.csprojAssemblyReference.cache
-D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend.Data\obj\Debug\netcoreapp2.2\ChessBackend.Data.csproj.CoreCompileInputs.cache
-D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend.Data\obj\Debug\netcoreapp2.2\ChessBackend.Data.AssemblyInfoInputs.cache
-D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend.Data\obj\Debug\netcoreapp2.2\ChessBackend.Data.AssemblyInfo.cs
-D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend.Data\obj\Debug\netcoreapp2.2\ChessBackend.Data.dll
-D:\CodingProjects\Chess\chessgame-backend\ChessBackend\ChessBackend.Data\obj\Debug\netcoreapp2.2\ChessBackend.Data.pdb

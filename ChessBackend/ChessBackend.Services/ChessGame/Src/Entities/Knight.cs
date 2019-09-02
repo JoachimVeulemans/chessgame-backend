@@ -11,7 +11,7 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
 
         public override string GetPGN()
         {
-            return ChessPiece.ToString()[1] + "";
+            return Type.ToString()[1] + "";
         }
     }
 }

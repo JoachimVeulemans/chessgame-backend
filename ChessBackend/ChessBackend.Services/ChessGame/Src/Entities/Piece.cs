@@ -9,19 +9,19 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
     {
         public string Position { get; set; }
         public int Value { get; set; }
-        public ChessPiece ChessPiece { get; set; }
+        public ChessPiece Type { get; set; }
         public Color Color { get; set; }
 
-        public Piece(Color color, ChessPiece chessPiece, int value)
+        public Piece(Color color, ChessPiece type, int value)
         {
             Color = color;
-            ChessPiece = chessPiece;
+            Type = type;
             Value = value;
         }
 
         public virtual string GetPGN()
         {
-            return this.ChessPiece.ToString()[0] + "";
+            return Type.ToString()[0] + "";
         }
     }
 }
