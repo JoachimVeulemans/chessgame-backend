@@ -12,7 +12,7 @@ namespace ChessBackend.Test.Chessgame
         private Square _sut;
         public SquareTest()
         {
-            _sut = new Square(new Random().Next(8), new Random().Next());
+            _sut = new Square(new Random().Next(8), new Random().Next(8));
         }
 
         [Theory]
@@ -24,7 +24,6 @@ namespace ChessBackend.Test.Chessgame
         [InlineData(5, 5, "f3")]
         [InlineData(6, 6, "g2")]
         [InlineData(7, 7, "h1")]
-
         public void Square_ShouldHaveCorrectPosition(int row, int column, string expected)
         {
             //Arrange
