@@ -4,13 +4,27 @@ using System.Text;
 
 namespace ChessBackend.Services.ChessGame.Src.Entities
 {
+    /// <summary>
+    /// The Utilities class provides a broad range of static helper functions that can be used throughout the whole application
+    /// </summary>
     public class Utilities
     {
+        /// <summary>
+        /// Converts a given position by row and column into a chess position
+        /// </summary>
+        /// <param name="row">Current row of the chessboard</param>
+        /// <param name="column">Current column of the chessboard</param>
+        /// <returns></returns>
         public static string GetPositionInPGN(int row, int column)
         {
             return ConvertColumnToPGN(column) + ConvertRowToPGN(row);
         }
 
+        /// <summary>
+        /// Converts a given row to the corresponding row notation
+        /// </summary>
+        /// <param name="row">Current row of the chessboard</param>
+        /// <returns></returns>
         private static string ConvertRowToPGN(int row)
         {
             var convertedRow = "";
@@ -46,6 +60,11 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
             return convertedRow;
         }
 
+        /// <summary>
+        /// Converts a given column to the corresponding column notation
+        /// </summary>
+        /// <param name="column">Current column of the chessboard</param>
+        /// <returns></returns>
         private static string ConvertColumnToPGN(int column)
         {
             var convertedColumn = "";
