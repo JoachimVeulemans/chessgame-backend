@@ -89,7 +89,6 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
             while (PositionIsValid(row, column))
             {
                 moves.Add(Utilities.GetPositionInPGN(row, column));
-
                 column++;
             }
 
@@ -104,7 +103,6 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
             while (PositionIsValid(row, column))
             {
                 moves.Add(Utilities.GetPositionInPGN(row, column));
-
                 column--;
             }
 
@@ -119,7 +117,6 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
             while (PositionIsValid(row, column))
             {
                 moves.Add(Utilities.GetPositionInPGN(row, column));
-
                 row++;
             }
 
@@ -134,7 +131,6 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
             while (PositionIsValid(row, column))
             {
                 moves.Add(Utilities.GetPositionInPGN(row, column));
-
                 row--;
             }
 
@@ -235,28 +231,19 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
 
         private IList<string> GetPawnMoves(int row, int column, Piece chessPiece)
         {
-            var newRow = row;
+            var pawnMoves = new List<string>();
 
             if(chessPiece.Color == Color.WHITE)
             {
-                newRow -= 1;
-                //moves = GetPawnMovesForWhite(row, column, chessPiece);
+                row--;
             }
             else
             {
-                newRow += 1;
-                //moves = GetPawnMovesForBlack(row, column, chessPiece);
+                row++;
             }
 
-            if (PositionIsValid(newRow, column))
-            {
-                return new List<string>()
-                {
-                    Utilities.GetPositionInPGN(newRow, column)
-                };
-            }
-
-            return new List<string>();
+            AddMoveToList(row, column, pawnMoves);
+            return pawnMoves;
         }
 
         private bool PositionIsValid(int row, int column)
