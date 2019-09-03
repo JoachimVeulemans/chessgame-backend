@@ -7,20 +7,23 @@ using Xunit;
 
 namespace ChessBackend.Test.Chessgame
 {
+    //TODO Chesspiece builder?
     public class MovemanagerTest
     {
+        private MoveManager _sut;
+        private Square _square;
+        public MovemanagerTest()
+        {
+            _sut = new MoveManager();
+            _square = new Square(3, 4);
+        }
+
         [Fact]
         public void MoveManager_Pawn_GetMovesShouldReturnCorrectMoves()
         {
-            //Arrange
-            var _sut = new MoveManager();
-            var square = new Square(3, 4)
-            {
-                ChessPiece = new Pawn(Color.BLACK)
-            };
-
             //Act
-            var moves = _sut.GetMoves(square);
+            _square.ChessPiece = new Pawn(Color.BLACK);
+            var moves = _sut.GetMoves(_square);
 
             //Assert
             Assert.Equal(1, moves.Count);
@@ -30,15 +33,9 @@ namespace ChessBackend.Test.Chessgame
         [Fact]
         public void MoveManager_Knight_GetMovesShouldReturnCorrectMoves()
         {
-            //Arrange
-            var _sut = new MoveManager();
-            var square = new Square(3, 4)
-            {
-                ChessPiece = new Knight(Color.BLACK)
-            };
-
             //Act
-            var moves = _sut.GetMoves(square);
+            _square.ChessPiece = new Knight(Color.BLACK);
+            var moves = _sut.GetMoves(_square);
 
             //Assert
             Console.WriteLine(moves);
@@ -48,15 +45,9 @@ namespace ChessBackend.Test.Chessgame
         [Fact]
         public void MoveManager_Bishop_GetMovesShouldReturnCorrectMoves()
         {
-            //Arrange
-            var _sut = new MoveManager();
-            var square = new Square(3, 4)
-            {
-                ChessPiece = new Bishop(Color.BLACK)
-            };
-
             //Act
-            var moves = _sut.GetMoves(square);
+            _square.ChessPiece = new Bishop(Color.BLACK);
+            var moves = _sut.GetMoves(_square);
 
             //Assert
             Assert.Equal(13, moves.Count);
@@ -65,15 +56,8 @@ namespace ChessBackend.Test.Chessgame
         [Fact]
         public void MoveManager_Rook_GetMovesShouldReturnCorrectMoves()
         {
-            //Arrange
-            var _sut = new MoveManager();
-            var square = new Square(3, 4)
-            {
-                ChessPiece = new Rook(Color.BLACK)
-            };
-
-            //Act
-            var moves = _sut.GetMoves(square);
+            _square.ChessPiece = new Rook(Color.BLACK);
+            var moves = _sut.GetMoves(_square);
 
             //Assert
             Assert.Equal(14, moves.Count);
@@ -82,15 +66,9 @@ namespace ChessBackend.Test.Chessgame
         [Fact]
         public void MoveManager_Queen_GetMovesShouldReturnCorrectMoves()
         {
-            //Arrange
-            var _sut = new MoveManager();
-            var square = new Square(3, 4)
-            {
-                ChessPiece = new Queen(Color.BLACK)
-            };
-
             //Act
-            var moves = _sut.GetMoves(square);
+            _square.ChessPiece = new Queen(Color.BLACK);
+            var moves = _sut.GetMoves(_square);
 
             //Assert
             Assert.Equal(27, moves.Count);
@@ -99,15 +77,9 @@ namespace ChessBackend.Test.Chessgame
         [Fact]
         public void MoveManager_King_GetMovesShouldReturnCorrectMoves()
         {
-            //Arrange
-            var _sut = new MoveManager();
-            var square = new Square(3, 4)
-            {
-                ChessPiece = new King(Color.BLACK)
-            };
-
             //Act
-            var moves = _sut.GetMoves(square);
+            _square.ChessPiece = new King(Color.BLACK);
+            var moves = _sut.GetMoves(_square);
 
             //Assert
             Assert.Equal(8, moves.Count);
