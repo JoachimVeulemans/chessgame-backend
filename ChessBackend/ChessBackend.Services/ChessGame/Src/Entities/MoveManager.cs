@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+//TODO refactor whole class
+
 namespace ChessBackend.Services.ChessGame.Src.Entities
 {
     public class MoveManager
@@ -43,27 +45,265 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
 
         private IList<string> GetKingMoves(int row, int column, Piece chessPiece)
         {
-            throw new NotImplementedException();
+            var kingMoves = new List<string>();
+
+            //Top
+            if(PositionIsValid(row - 1, column))
+            {
+                kingMoves.Add(Utilities.GetPositionInPGN(row - 1, column));
+            }
+
+            //Topright
+            if (PositionIsValid(row - 1, column + 1))
+            {
+                kingMoves.Add(Utilities.GetPositionInPGN(row - 1, column + 1));
+            }
+
+            //Right
+            if (PositionIsValid(row, column + 1))
+            {
+                kingMoves.Add(Utilities.GetPositionInPGN(row, column + 1));
+            }
+
+            //Bottomright
+            if (PositionIsValid(row + 1, column + 1))
+            {
+                kingMoves.Add(Utilities.GetPositionInPGN(row + 1, column + 1));
+            }
+
+            //Bottom
+            if (PositionIsValid(row + 1, column))
+            {
+                kingMoves.Add(Utilities.GetPositionInPGN(row + 1, column));
+            }
+
+            //Bottomleft
+            if (PositionIsValid(row + 1, column - 1))
+            {
+                kingMoves.Add(Utilities.GetPositionInPGN(row + 1, column - 1));
+            }
+
+            //Left
+            if (PositionIsValid(row, column - 1))
+            {
+                kingMoves.Add(Utilities.GetPositionInPGN(row, column - 1));
+            }
+
+            //Topleft
+            if (PositionIsValid(row - 1, column - 1))
+            {
+                kingMoves.Add(Utilities.GetPositionInPGN(row - 1, column - 1));
+            }
+
+            return kingMoves;
         }
 
         private IList<string> GetQueenMoves(int row, int column, Piece chessPiece)
         {
-            throw new NotImplementedException();
+            var queenMoves = new List<string>();
+
+            queenMoves.AddRange(GetBishopMoves(row, column, chessPiece));
+            queenMoves.AddRange(GetRookMoves(row, column, chessPiece));
+
+            return queenMoves;
         }
 
         private IList<string> GetRookMoves(int row, int column, Piece chessPiece)
         {
-            throw new NotImplementedException();
+            var rookMoves = new List<string>();
+
+            //Left
+            var newRow = row;
+            var newColumn = column-1;
+
+            while(PositionIsValid(newRow, newColumn))
+            {
+                rookMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+
+                newColumn -= 1;
+            }
+
+            //Right
+            newRow = row;
+            newColumn = column + 1;
+
+            while (PositionIsValid(newRow, newColumn))
+            {
+                rookMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+
+                newColumn += 1;
+            }
+
+            //Down
+            newRow = row + 1;
+            newColumn = column;
+
+            while (PositionIsValid(newRow, newColumn))
+            {
+                rookMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+
+                newRow += 1;
+            }
+
+            //Up
+            newRow = row - 1;
+            newColumn = column;
+
+            while (PositionIsValid(newRow, newColumn))
+            {
+                rookMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+
+                newRow += 1;
+            }
+
+            return rookMoves;
         }
 
         private IList<string> GetBishopMoves(int row, int column, Piece chessPiece)
         {
-            throw new NotImplementedException();
+            var bishopMoves = new List<string>();
+
+            var newRow = row + 1;
+            var newColumn = column + 1;
+
+            //Right Down
+            while (PositionIsValid(newRow, newColumn))
+            {
+                bishopMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+                newRow += 1;
+                newColumn += 1;
+            }
+
+            //Left Up
+            newRow = row-1;
+            newColumn = column-1;
+
+            while(PositionIsValid(newRow, newColumn))
+            {
+                bishopMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+                newRow -= 1;
+                newColumn -= 1;
+            }
+
+            //Left Down
+            newRow = row + 1;
+            newColumn = column - 1;
+
+            while (PositionIsValid(newRow, newColumn))
+            {
+                bishopMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+                newRow += 1;
+                newColumn -= 1;
+            }
+
+            //Right Up
+            newRow = row - 1;
+            newColumn = column + 1;
+
+            while (PositionIsValid(newRow, newColumn))
+            {
+                bishopMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+                newRow -= 1;
+                newColumn += 1;
+            }
+
+            return bishopMoves;
         }
 
         private IList<string> GetKnightMoves(int row, int column, Piece chessPiece)
         {
-            throw new NotImplementedException();
+            var knightMoves = new List<string>();
+
+            var newRow = row;
+            var newColumn = column;
+
+            //1
+            newRow += 2;
+            newColumn += 1;
+
+            if(PositionIsValid(newRow, newColumn))
+            {
+                knightMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+            }
+
+            //2
+            newRow = row;
+            newColumn = column;
+            newRow += 2;
+            newColumn -= 1;
+
+            if (PositionIsValid(newRow, newColumn))
+            {
+                knightMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+            }
+
+            //3
+            newRow = row;
+            newColumn = column;
+            newRow -= 2;
+            newColumn += 1;
+
+            if (PositionIsValid(newRow, newColumn))
+            {
+                knightMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+            }
+
+            //4
+            newRow = row;
+            newColumn = column;
+            newRow -= 2;
+            newColumn -= 1;
+
+            if (PositionIsValid(newRow, newColumn))
+            {
+                knightMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+            }
+
+            //5
+            newRow = row;
+            newColumn = column;
+            newRow += 1;
+            newColumn -= 2;
+
+            if (PositionIsValid(newRow, newColumn))
+            {
+                knightMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+            }
+
+            //6
+            newRow = row;
+            newColumn = column;
+            newRow -= 1;
+            newColumn -= 2;
+
+            if (PositionIsValid(newRow, newColumn))
+            {
+                knightMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+            }
+
+            //7
+            newRow = row;
+            newColumn = column;
+            newRow += 1;
+            newColumn += 2;
+
+            if (PositionIsValid(newRow, newColumn))
+            {
+                knightMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+            }
+
+            //8
+            newRow = row;
+            newColumn = column;
+            newRow -= 1;
+            newColumn += 2;
+
+            if (PositionIsValid(newRow, newColumn))
+            {
+                knightMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
+            }
+
+            return knightMoves;
         }
 
         private IList<string> GetPawnMoves(int row, int column, Piece chessPiece)
@@ -81,7 +321,7 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
                 //moves = GetPawnMovesForBlack(row, column, chessPiece);
             }
 
-            if (row >= 0 && row < 8)
+            if (PositionIsValid(newRow, column))
             {
                 return new List<string>()
                 {
@@ -90,6 +330,21 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
             }
 
             return new List<string>();
+        }
+
+        private bool PositionIsValid(int row, int column)
+        {
+            if(row < 0 || row > 7)
+            {
+                return false;
+            }
+
+            if(column < 0 || column > 7)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         //private IList<string> GetPawnMovesForBlack(int row, int column, Piece chessPiece)
