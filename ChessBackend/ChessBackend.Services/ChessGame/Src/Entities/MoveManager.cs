@@ -1,9 +1,7 @@
 ﻿using ChessBackend.Services.ChessGame.Src.Enums;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-//TODO refactor whole class
+//TODO Constructor with ChessBoard of game so other entities can be checked
 
 namespace ChessBackend.Services.ChessGame.Src.Entities
 {
@@ -12,11 +10,6 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
         public IList<string> GetMoves(Square position)
         {
             IList<string> moveList = new List<string>();
-
-            if (!position.HasChessPiece)
-            {
-                return null;
-            }
 
             switch (position.ChessPiece.Type)
             {
