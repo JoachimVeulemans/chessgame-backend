@@ -153,7 +153,7 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
             {
                 rookMoves.Add(Utilities.GetPositionInPGN(newRow, newColumn));
 
-                newRow += 1;
+                newRow -= 1;
             }
 
             return rookMoves;
