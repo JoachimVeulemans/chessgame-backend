@@ -1,8 +1,6 @@
 ﻿using ChessBackend.Services.ChessGame.Src.Entities;
 using ChessBackend.Services.ChessGame.Src.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace ChessBackend.Test.Chessgame
@@ -14,7 +12,7 @@ namespace ChessBackend.Test.Chessgame
         private Square _square;
         public MovemanagerTest()
         {
-            _sut = new MoveManager();
+            _sut = new MoveManager(new Square[0,0]);
             _square = new Square(3, 4);
         }
 

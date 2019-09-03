@@ -6,7 +6,12 @@ using System.Collections.Generic;
 namespace ChessBackend.Services.ChessGame.Src.Entities
 {
     public class MoveManager
-    { 
+    {
+        private Square[,] _chessBoard;
+        public MoveManager(Square[,] chessBoard)
+        {
+            _chessBoard = chessBoard;
+        }
         public IList<string> GetMoves(Square position)
         {
             IList<string> moveList = new List<string>();
@@ -241,12 +246,12 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
 
         private bool PositionIsValid(int row, int column)
         {
-            if(row < 0 || row > 7)
+            if(row < 0 || row > ChessGame.BOARDSIZE - 1)
             {
                 return false;
             }
 
-            if(column < 0 || column > 7)
+            if(column < 0 || column > ChessGame.BOARDSIZE - 1)
             {
                 return false;
             }

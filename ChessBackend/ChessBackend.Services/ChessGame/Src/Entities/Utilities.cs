@@ -9,7 +9,6 @@ namespace ChessBackend.Services.ChessGame.Src.Entities
     /// </summary>
     public class Utilities
     {
-        public const int BOARDSIZE = 8;
 
         /// <summary>
         /// Converts a given position by row and column into a chess position
