@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>C:\Users\Joachim\Documents\repositories\chessgame-backend\ChessBackend\Backup\ChessBackend.Services\</UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <Folder Include="ChessGame\Resources\" />
     <Folder Include="Services\" />
   </ItemGroup>
-
 </Project>
