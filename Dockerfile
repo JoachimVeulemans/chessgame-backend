@@ -26,4 +26,4 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # 10 - Set entrypoint commands
-ENTRYPOINT ["dotnet", "ChessBackend.dll"]
+ENTRYPOINT ["dotnet", "chessbackend.dll"]
