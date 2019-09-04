@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChessBackend.Data\ChessBackend.Data.csproj" />
     <ProjectReference Include="..\ChessBackend.Services\ChessBackend.Services.csproj" />
   </ItemGroup>
 
