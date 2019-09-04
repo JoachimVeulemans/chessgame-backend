@@ -15,5 +15,4 @@
   <ItemGroup>
     <ProjectReference Include="..\ChessBackend.Services\ChessBackend.Services.csproj" />
   </ItemGroup>
-
 </Project>
