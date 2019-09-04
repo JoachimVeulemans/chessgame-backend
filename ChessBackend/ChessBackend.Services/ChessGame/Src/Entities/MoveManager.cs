@@ -6,7 +6,12 @@ using System.Collections.Generic;
 namespace ChessBackend.Services.ChessGame.Src.Entities
 {
     public class MoveManager
-    { 
+    {
+        private Square[,] _chessBoard;
+        public MoveManager(Square[,] chessBoard)
+        {
+            _chessBoard = chessBoard;
+        }
         public IList<string> GetMoves(Square position)
         {
             IList<string> moveList = new List<string>();
