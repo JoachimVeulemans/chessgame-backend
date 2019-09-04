@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ChessBackend.Data.Entities;
-using ChessBackend.Services.ChessGame.Src;
-using Microsoft.AspNetCore.Http;
+﻿using ChessBackend.Entities;
+using ChessBackend.Entities.ChessGame;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChessBackend.Controllers

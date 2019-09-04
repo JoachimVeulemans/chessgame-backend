@@ -1,8 +1,4 @@
-﻿using ChessBackend.Services.ChessGame.Src.Entities;
-using ChessBackend.Services.ChessGame.Src.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ChessBackend.Entities.ChessGame;
 using Xunit;
 
 namespace ChessBackend.Test.Chessgame

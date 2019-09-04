@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChessBackend.Services\ChessBackend.Services.csproj" />
+    <ProjectReference Include="..\ChessBackend\ChessBackend.csproj" />
   </ItemGroup>
 
 </Project>

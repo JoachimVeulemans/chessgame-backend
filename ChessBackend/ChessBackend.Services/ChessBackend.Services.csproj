@@ -9,7 +9,4 @@
     <Folder Include="ChessGame\Resources\" />
     <Folder Include="Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ChessBackend.Data\ChessBackend.Data.csproj" />
-  </ItemGroup>
 </Project>
