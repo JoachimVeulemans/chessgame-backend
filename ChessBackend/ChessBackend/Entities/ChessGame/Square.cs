@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ChessBackend.Services.ChessGame.Src.Entities
+﻿namespace ChessBackend.Entities.ChessGame
 {
     public class Square
     {

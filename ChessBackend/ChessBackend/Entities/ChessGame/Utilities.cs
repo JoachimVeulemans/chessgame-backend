@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ChessBackend.Services.ChessGame.Src.Entities
+﻿namespace ChessBackend.Entities.ChessGame
 {
     /// <summary>
     /// The Utilities class provides a broad range of static helper functions that can be used throughout the whole application

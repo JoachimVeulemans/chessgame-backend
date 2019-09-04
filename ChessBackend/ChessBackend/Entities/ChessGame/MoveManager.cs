@@ -1,12 +1,16 @@
-﻿using ChessBackend.Services.ChessGame.Src.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 //TODO Constructor with ChessBoard of game so other entities can be checked
 
-namespace ChessBackend.Services.ChessGame.Src.Entities
+namespace ChessBackend.Entities.ChessGame
 {
     public class MoveManager
-    { 
+    {
+        private Square[,] _chessBoard;
+        public MoveManager(Square[,] chessBoard)
+        {
+            _chessBoard = chessBoard;
+        }
         public IList<string> GetMoves(Square position)
         {
             IList<string> moveList = new List<string>();

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ChessBackend.Services.ChessGame.Src.Enums
+﻿namespace ChessBackend.Entities.ChessGame
 {
     public enum ChessPiece
     {
