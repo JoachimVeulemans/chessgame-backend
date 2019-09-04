@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ChessBackend.Data.Entities
 {
     public class FamousGame
     {
-        public int GameId { get; set; }
+        [Required]
+        public int FamousgameId { get; set; }
         public string Event { get; set; }
         public string Site { get; set; }
         public string Date { get; set; }
