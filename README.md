@@ -19,7 +19,7 @@ Navigate to [backend.chessgame.jocawebs.be/api](https://backend.chessgame.jocawe
 
 ## Project Status
 
-Navigate to [Trello]([???]) to view the projects status on Trello.
+Navigate to [Trello](https://trello.com/b/k8dXRchw/chessproject) to view the projects status on Trello.
 
 ## Docker Hub Status
 
