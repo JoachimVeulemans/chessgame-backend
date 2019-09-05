@@ -1,11 +1,12 @@
-﻿namespace ChessBackend.Entities.ChessGame
+﻿using System.Collections.Generic;
+
+namespace ChessBackend.Entities.ChessGame
 {
     /// <summary>
     /// The Utilities class provides a broad range of static helper functions that can be used throughout the whole application
     /// </summary>
     public class Utilities
-    {
-        public const int BOARDSIZE = 8;
+    { 
 
         /// <summary>
         /// Converts a given position by row and column into a chess position
@@ -96,6 +97,23 @@
             }
 
             return convertedColumn;
+        }
+
+        public static string[,] ConvertChessBoardToArrayWithPieceNames(Square[,] chessBoard)
+        {
+            var pieces = new string[ChessGame.BOARDSIZE, ChessGame.BOARDSIZE];
+
+            for(var row = 0; row < ChessGame.BOARDSIZE; row++)
+            {
+                for(var column = 0; column < ChessGame.BOARDSIZE; column++)
+                {
+                    if (chessBoard[row, column].HasChessPiece)
+                        pieces[row, column] = chessBoard[row, column].ChessPiece.Name;
+                    else
+                        pieces[row, column] = "";
+                }
+            }
+            return pieces;
         }
     }
 }
