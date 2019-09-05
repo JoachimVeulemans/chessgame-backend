@@ -1,4 +1,4 @@
-﻿using ChessBackend.Entities;
+﻿using ChessBackend.Data.DataEntities;
 using ChessBackend.Entities.ChessGame;
 using Microsoft.AspNetCore.Mvc;
 
