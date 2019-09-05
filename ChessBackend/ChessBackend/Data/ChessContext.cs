@@ -1,4 +1,4 @@
-﻿using ChessBackend.Entities;
+﻿using ChessBackend.Data.DataEntities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

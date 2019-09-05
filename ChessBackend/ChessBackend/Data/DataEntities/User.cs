@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace ChessBackend.Entities
+namespace ChessBackend.Data.DataEntities
 {
     public class User : IdentityUser
     {

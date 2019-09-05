@@ -1,15 +1,14 @@
-﻿using System;
-using ChessBackend.Entities.ChessGame;
+﻿using ChessBackend.Entities.ChessGame;
 using Xunit;
 
-namespace ChessBackend.Test.Chessgame
+namespace ChessBackend.Test.ChessGame
 {
     //TODO Chesspiece builder?
-    public class MovemanagerTest
+    public class MoveManagerTest
     {
-        private MoveManager _sut;
-        private Square _square;
-        public MovemanagerTest()
+        private readonly MoveManager _sut;
+        private readonly Square _square;
+        public MoveManagerTest()
         {
             _sut = new MoveManager(new Square[0, 0]);
             _square = new Square(3, 4);
@@ -35,7 +34,6 @@ namespace ChessBackend.Test.Chessgame
             var moves = _sut.GetMoves(_square);
 
             //Assert
-            Console.WriteLine(moves);
             Assert.Equal(8, moves.Count);
         }
 

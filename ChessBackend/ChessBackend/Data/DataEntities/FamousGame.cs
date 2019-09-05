@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ChessBackend.Entities
+namespace ChessBackend.Data.DataEntities
 {
     public class FamousGame
     {

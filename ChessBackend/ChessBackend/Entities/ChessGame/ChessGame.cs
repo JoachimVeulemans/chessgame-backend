@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using ChessBackend.Data.DataEntities;
 
 namespace ChessBackend.Entities.ChessGame
 {
@@ -18,7 +20,7 @@ namespace ChessBackend.Entities.ChessGame
             Id = id;
             WhitePlayer = whitePlayer;
             BlackPlayer = blackPlayer;
-            Date = DateTime.Now.Date.ToString();
+            Date = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture);
             ResetChessBoard();
             MoveManager = new MoveManager(ChessBoard);
 
@@ -48,7 +50,7 @@ namespace ChessBackend.Entities.ChessGame
             ChessBoard[0, 6].ChessPiece = new Knight(Color.BLACK);
             ChessBoard[0, 7].ChessPiece = new Rook(Color.BLACK);
 
-            for (int column = 0; column < BOARDSIZE; column++)
+            for (var column = 0; column < BOARDSIZE; column++)
             {
                 ChessBoard[1, column].ChessPiece = new Pawn(Color.BLACK);
             }
@@ -65,7 +67,7 @@ namespace ChessBackend.Entities.ChessGame
             ChessBoard[7, 6].ChessPiece = new Knight(Color.WHITE);
             ChessBoard[7, 7].ChessPiece = new Rook(Color.WHITE);
 
-            for (int column = 0; column < BOARDSIZE; column++)
+            for (var column = 0; column < BOARDSIZE; column++)
             {
                 ChessBoard[6, column].ChessPiece = new Pawn(Color.WHITE);
             }
@@ -73,9 +75,9 @@ namespace ChessBackend.Entities.ChessGame
 
         private void InitializeChessBoard()
         {
-            for (int row = 0; row < BOARDSIZE; row++)
+            for (var row = 0; row < BOARDSIZE; row++)
             {
-                for (int column = 0; column < BOARDSIZE; column++)
+                for (var column = 0; column < BOARDSIZE; column++)
                 {
                     ChessBoard[row, column] = new Square(row, column);
                 }

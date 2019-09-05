@@ -1,4 +1,4 @@
-﻿using ChessBackend.Entities;
+﻿using ChessBackend.Data.DataEntities;
 using ChessBackend.Entities.ChessGame;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +11,8 @@ namespace ChessBackend.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new OkObjectResult(new ChessGame(0, new User(), new User()).ChessBoard);
+
+            return new OkObjectResult(Utilities.ConvertChessBoardToArrayWithPieceNames(new ChessGame(0, new User(), new User()).ChessBoard));
         }
     }
 }
