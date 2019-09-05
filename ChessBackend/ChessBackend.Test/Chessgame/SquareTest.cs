@@ -2,7 +2,7 @@
 using ChessBackend.Entities.ChessGame;
 using Xunit;
 
-namespace ChessBackend.Test.Chessgame
+namespace ChessBackend.Test.ChessGame
 {
     public class SquareTest
     {
