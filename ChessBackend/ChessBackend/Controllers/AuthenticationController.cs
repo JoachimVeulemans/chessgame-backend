@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using ChessBackend.Data.DataEntities;
-using ChessBackend.Entities;
+﻿using System.Threading.Tasks;
 using ChessBackend.Entities.Models;
 using ChessBackend.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 
 namespace ChessBackend.Controllers
 {
