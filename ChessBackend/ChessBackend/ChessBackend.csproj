@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>516f3a17-0bc6-4e1a-8fdf-7eb4a6d70509</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,10 +12,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
