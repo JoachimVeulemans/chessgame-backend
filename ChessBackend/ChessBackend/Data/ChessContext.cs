@@ -6,6 +6,10 @@ namespace ChessBackend.Data
 {
     public class ChessContext : IdentityDbContext<User>
     {
+        public ChessContext(DbContextOptions options) : base(options)
+        {
+
+        }
         public DbSet<Game> Games { get; set; }
         public DbSet<FamousGame> FamousGames { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
