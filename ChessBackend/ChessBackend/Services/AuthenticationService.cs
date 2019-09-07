@@ -30,7 +30,7 @@ namespace ChessBackend.Services
         public async Task<IdentityResult> Register(RegisterModel registerModel)
         {
             await GetUser(registerModel.Email);
-            CheckIfUserExists(registerModel.Email);
+            CheckIfUserExists();
 
             if (_userExists)
                 return null;
@@ -41,7 +41,7 @@ namespace ChessBackend.Services
         public async Task<string> Login(LoginModel loginModel)
         {
             await GetUser(loginModel.Email);
-            CheckIfUserExists(loginModel.Email);
+            CheckIfUserExists();
 
             if (!_userExists)
                 return null;
@@ -65,7 +65,7 @@ namespace ChessBackend.Services
             _user = await FindUserByEmail(email);
         }
 
-        private void CheckIfUserExists(string email)
+        private void CheckIfUserExists()
         {
             if (_user == null)
                 _userExists = false;
