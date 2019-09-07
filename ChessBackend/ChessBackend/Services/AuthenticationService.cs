@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -17,62 +18,65 @@ namespace ChessBackend.Services
     {
         private readonly IOptions<TokenSettings> _tokenSettings;
         private readonly UserManager<User> _userManager;
+        private bool _userExists = false;
+        private bool _passwordMatches = false;
+        private User _user;
 
         public AuthenticationService(UserManager<User> userManager, IOptions<TokenSettings> tokenSettings)
         {
             _tokenSettings = tokenSettings;
             _userManager = userManager;
         }
-        public async Task<string> Login(LoginModel loginModel)
-        {
-            var user = await _userManager.FindByEmailAsync(loginModel.Email);
-
-            if(user == null)
-            {
-                return null;
-            }
-
-            if(!await _userManager.CheckPasswordAsync(user, loginModel.Password))
-            {
-                return null;
-            }
-
-            return await CreateJwtToken(user);
-        }
         public async Task<IdentityResult> Register(RegisterModel registerModel)
         {
-            var user = await _userManager.FindByEmailAsync(registerModel.Email);
+            await GetUser(registerModel.Email);
+            CheckIfUserExists(registerModel.Email);
 
-            if(user != null)
-            {
+            if (_userExists)
                 return null;
-            }
 
-            user = new User
-            {
-                UserName = registerModel.UserName,
-                Email = registerModel.Email,
-                SecurityStamp = Guid.NewGuid().ToString()
-            };
-
-            return await _userManager.CreateAsync(user, registerModel.Password);
+            _user = CreateUserWithDataFromRegisterModel(registerModel);
+            return await _userManager.CreateAsync(_user, registerModel.Password);
         }
-        private async Task<string> CreateJwtToken(User user)
+        public async Task<string> Login(LoginModel loginModel)
         {
-            var userClaims = await _userManager.GetClaimsAsync(user);
-            var allClaims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email)
-            }
-            .Union(userClaims)
-            .ToList();
+            await GetUser(loginModel.Email);
+            CheckIfUserExists(loginModel.Email);
 
-            var keyBytes = Encoding.UTF8.GetBytes(_tokenSettings.Value.Key);
-            var symmetricSecurityKey = new SymmetricSecurityKey(keyBytes);
-            var signinCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+            if (!_userExists)
+                return null;
+
+            CheckIfPasswordsMatch(loginModel.Password);
+
+            if(!_passwordMatches)
+                return null;
+
+            return await CreateJwtToken();
+        }
+
+        private async void CheckIfPasswordsMatch(string password)
+        {
+            if (await _userManager.CheckPasswordAsync(_user, password))
+                _passwordMatches = true;
+        }
+
+        private async Task GetUser(string email)
+        {
+            _user = await FindUserByEmail(email);
+        }
+
+        private void CheckIfUserExists(string email)
+        {
+            if (_user == null)
+                _userExists = false;
+            else
+                _userExists = true;
+        }
+
+        private async Task<string> CreateJwtToken()
+        {
+            var allClaims = await GetAllClaims();
+            var signinCredentials = GetSigningCredentials();
 
             var jwtSecurityToken = new JwtSecurityToken(
                 issuer: _tokenSettings.Value.Issuer,
@@ -82,8 +86,44 @@ namespace ChessBackend.Services
                 signingCredentials: signinCredentials
                 );
 
-            string encryptedToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-            return encryptedToken;
+            return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+        }
+
+        private SigningCredentials GetSigningCredentials()
+        {
+            var keyBytes = Encoding.UTF8.GetBytes(_tokenSettings.Value.Key);
+            var symmetricSecurityKey = new SymmetricSecurityKey(keyBytes);
+            return new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+        }
+
+        private async Task<List<Claim>> GetAllClaims()
+        {
+            var userClaims = await _userManager.GetClaimsAsync(_user);
+
+            return new[]
+            {
+                new Claim(JwtRegisteredClaimNames.NameId, _user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub, _user.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, _user.Email)
+            }
+            .Union(userClaims)
+            .ToList();
+        }
+
+        private User CreateUserWithDataFromRegisterModel(RegisterModel registerModel)
+        {
+            return new User()
+            {
+                UserName = registerModel.UserName,
+                Email = registerModel.Email,
+                SecurityStamp = Guid.NewGuid().ToString()
+            };
+        }
+
+        private async Task<User> FindUserByEmail(string email)
+        {
+            return await _userManager.FindByEmailAsync(email);
         }
     }
 }

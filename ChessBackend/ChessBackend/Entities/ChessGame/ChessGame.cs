@@ -23,14 +23,18 @@ namespace ChessBackend.Entities.ChessGame
             Date = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture);
             ResetChessBoard();
             MoveManager = new MoveManager(ChessBoard);
-
         }
 
         private void ResetChessBoard()
         {
-            ChessBoard = new Square[BOARDSIZE, BOARDSIZE];
+            DeclareChessBoard();
             InitializeChessBoard();
             PutChessPiecesOnTheBoard();
+        }
+
+        private void DeclareChessBoard()
+        {
+            ChessBoard = new Square[BOARDSIZE, BOARDSIZE];
         }
 
         private void PutChessPiecesOnTheBoard()

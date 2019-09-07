@@ -20,21 +20,15 @@ namespace ChessBackend.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             var result = await _authenticationService.Register(model);
 
             if(result == null)
-            {
                 return BadRequest();
-            }
 
             if (result.Succeeded)
-            {
                 return Ok(new { Username = model.UserName });
-            }
 
             AddErrorsFromIdentityResultToModelState(result);
             return BadRequest(ModelState);
@@ -44,16 +38,12 @@ namespace ChessBackend.Controllers
         public async Task<IActionResult> Login([FromBody]LoginModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             var token = await _authenticationService.Login(model);
 
             if(token == null)
-            {
                 return Unauthorized();
-            }
 
             return Ok(new { signinToken = token, });
         }
