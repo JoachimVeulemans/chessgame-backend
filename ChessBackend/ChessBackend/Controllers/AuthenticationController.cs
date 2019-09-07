@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using ChessBackend.Entities.Models;
 using ChessBackend.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChessBackend.Controllers
@@ -18,7 +19,6 @@ namespace ChessBackend.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -36,11 +36,7 @@ namespace ChessBackend.Controllers
                 return Ok(new { Username = model.UserName });
             }
 
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(error.Code, error.Description);
-            }
-
+            AddErrorsFromIdentityResultToModelState(result);
             return BadRequest(ModelState);
         }
 
@@ -60,6 +56,14 @@ namespace ChessBackend.Controllers
             }
 
             return Ok(new { signinToken = token, });
+        }
+
+        private void AddErrorsFromIdentityResultToModelState(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(error.Code, error.Description);
+            }
         }
     }
 }
