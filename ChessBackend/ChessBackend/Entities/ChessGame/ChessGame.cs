@@ -137,5 +137,11 @@ namespace ChessBackend.Entities.ChessGame
         {
             return CurrentPlayer.Id.Equals(id);
         }
+
+        public IList<string> GetValidMoves(string position)
+        {
+            position = Utilities.GetPositionInPGN(Convert.ToInt32(position[0] + ""), Convert.ToInt32(position[2] + ""));
+            return MoveManager.GetMoves(GetSquare(position));
+        }
     }
 }

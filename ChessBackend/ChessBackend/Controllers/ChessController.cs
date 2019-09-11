@@ -3,7 +3,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using ChessBackend.Data.DataEntities;
 using ChessBackend.Data.Reposities;
+using ChessBackend.Entities;
 using ChessBackend.Entities.ChessGame;
+using ChessBackend.Entities.Models;
 using ChessBackend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +16,12 @@ namespace ChessBackend.Controllers
     [ApiController]
     public class ChessController : ControllerBase
     {
-        private readonly IChessService _service;
+        private readonly IChessService _chessService;
         private readonly IRepository<User> _repository;
 
         public ChessController(IChessService service, IRepository<User> repository)
         {
-            _service = service;
+            _chessService = service;
             _repository = repository;
         }
 
@@ -27,25 +29,31 @@ namespace ChessBackend.Controllers
         [HttpGet]
         public async Task<IActionResult> StartGame()
         {
-            var userId = HttpContext.User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(p => p.Value).FirstOrDefault();
-            var user = await _repository.GetById(userId);
+            var user = await _repository.GetById(ApplicationUtilities.GetUserIdFromHttpContext(HttpContext));
+
+            //At the moment there is no way of inviting, so I'm using an internal dummy User as opponent
             var users = await _repository.GetAll();
             var user2 = users[0];
 
-            var result = _service.StartGame(user, user2);
+            var gameId = _chessService.StartGame(user, user2);
+            return Ok(gameId);
+        }
 
-            var chessGame = _service.GetChessGame(user, result);
-            chessGame.Move(new Move()
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> GetMoves([FromBody] GetValidPositionsModel getValidPositionsModel)
+        {
+            if (!ModelState.IsValid)
             {
-                From = "e2",
-                To = "e3"
-            });
+                return BadRequest();
+            }
 
-            return new OkObjectResult(Utilities.ConvertChessBoardToArrayWithPieceNames(chessGame.ChessBoard));
+            var user = await _repository.GetById(ApplicationUtilities.GetUserIdFromHttpContext(HttpContext));
+            return Ok(_chessService.GetPossiblePositions(user, getValidPositionsModel.GameId, getValidPositionsModel.Position));
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Test()
         { 
             return new OkObjectResult(Utilities.ConvertChessBoardToArrayWithPieceNames(new ChessGame(new User(), new User()).ChessBoard));
         }

@@ -8,6 +8,7 @@ namespace ChessBackend.Entities.Models
     public class MoveModel
     {
         public string GameId { get; set; }
-        public string Move { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
     }
 }

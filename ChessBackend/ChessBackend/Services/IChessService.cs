@@ -10,6 +10,7 @@ namespace ChessBackend.Services
     public interface IChessService
     {
         string StartGame(User whitePlayer, User blackPlayer);
-        ChessGame GetChessGame(User player, string id);
+        ChessGame GetChessGame(User player, string chessGameId);
+        IList<string> GetPossiblePositions(User player, string chessGameId, string position);
     }
 }
