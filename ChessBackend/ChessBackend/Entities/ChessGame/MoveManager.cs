@@ -51,8 +51,7 @@ namespace ChessBackend.Entities.ChessGame
         private IList<string> GetKingMoves()
         {
             var kingMoves = new List<string>();
-            _currentRow = _chessPieceRow;
-            _currentColumn = _chessPieceColumn;
+            ResetRowAndColumn();
 
             //TODO Refactor
             AddMoveToList(_currentRow - 1, _currentColumn, kingMoves);          //Top
@@ -92,8 +91,7 @@ namespace ChessBackend.Entities.ChessGame
         private IEnumerable<string> GetRookRightMoves()
         {
             var moves = new List<string>();
-            _currentRow = _chessPieceRow;
-            _currentColumn = _chessPieceColumn;
+            ResetRowAndColumn();
 
             _currentColumn++;
 
@@ -109,8 +107,7 @@ namespace ChessBackend.Entities.ChessGame
         private IEnumerable<string> GetRookLeftMoves()
         {
             var moves = new List<string>();
-            _currentRow = _chessPieceRow;
-            _currentColumn = _chessPieceColumn;
+            ResetRowAndColumn();
             _currentColumn--;
 
             while (PositionIsValid())
@@ -135,8 +132,7 @@ namespace ChessBackend.Entities.ChessGame
         private IEnumerable<string> GetRookDownMoves()
         {
             var moves = new List<string>();
-            _currentRow = _chessPieceRow;
-            _currentColumn = _chessPieceColumn;
+            ResetRowAndColumn();
 
             _currentRow++;
 
@@ -152,8 +148,7 @@ namespace ChessBackend.Entities.ChessGame
         private IEnumerable<string> GetRookUpMoves()
         {
             var moves = new List<string>();
-            _currentRow = _chessPieceRow;
-            _currentColumn = _chessPieceColumn;
+            ResetRowAndColumn();
             _currentRow--;
 
             while (PositionIsValid())
@@ -180,8 +175,7 @@ namespace ChessBackend.Entities.ChessGame
         private IEnumerable<string> GetBishopLeftUpMoves()
         {
             var moves = new List<string>();
-            _currentRow = _chessPieceRow;
-            _currentColumn = _chessPieceColumn;
+            ResetRowAndColumn();
 
             _currentRow--;
             _currentColumn--;
@@ -199,8 +193,7 @@ namespace ChessBackend.Entities.ChessGame
         private IEnumerable<string> GetBishopLeftDownMoves()
         {
             var moves = new List<string>();
-            _currentRow = _chessPieceRow;
-            _currentColumn = _chessPieceColumn;
+            ResetRowAndColumn();
             _currentRow++;
             _currentColumn--;
 
@@ -217,8 +210,7 @@ namespace ChessBackend.Entities.ChessGame
         private IEnumerable<string> GetBishopRightUpMoves()
         {
             var moves = new List<string>();
-            _currentRow = _chessPieceRow;
-            _currentColumn = _chessPieceColumn;
+            ResetRowAndColumn();
             _currentRow--;
             _currentColumn++;
 
@@ -235,8 +227,7 @@ namespace ChessBackend.Entities.ChessGame
         private IEnumerable<string> GetBishopRightDownMoves()
         {
             var moves = new List<string>();
-            _currentRow = _chessPieceRow;
-            _currentColumn = _chessPieceColumn;
+            ResetRowAndColumn();
 
             _currentRow++;
             _currentColumn++;
@@ -254,18 +245,25 @@ namespace ChessBackend.Entities.ChessGame
         private IList<string> GetKnightMoves()
         {
             var knightMoves = new List<string>();
-            _currentRow = _chessPieceRow;
-            _currentColumn = _chessPieceColumn;
+            ResetRowAndColumn();
 
             //TODO Refactor
             AddMoveToList(_currentRow + 2, _currentColumn + 1, knightMoves);
+            ResetRowAndColumn();
             AddMoveToList(_currentRow + 2, _currentColumn - 1, knightMoves);
+            ResetRowAndColumn();
             AddMoveToList(_currentRow - 2, _currentColumn + 1, knightMoves);
+            ResetRowAndColumn();
             AddMoveToList(_currentRow - 2, _currentColumn - 1, knightMoves);
+            ResetRowAndColumn();
             AddMoveToList(_currentRow + 1, _currentColumn - 2, knightMoves);
+            ResetRowAndColumn();
             AddMoveToList(_currentRow - 1, _currentColumn - 2, knightMoves);
+            ResetRowAndColumn();
             AddMoveToList(_currentRow + 1, _currentColumn + 2, knightMoves);
+            ResetRowAndColumn();
             AddMoveToList(_currentRow - 1, _currentColumn + 2, knightMoves);
+            ResetRowAndColumn();
 
             return knightMoves;
         }
@@ -343,10 +341,19 @@ namespace ChessBackend.Entities.ChessGame
 
         private void AddMoveToList(int row, int column, IList<string> moves)
         {
-            if(PositionIsValid(row, column))
+            _currentRow = row;
+            _currentColumn = column;
+
+            if(PositionIsValid())
             {
                 moves.Add(Utilities.GetPositionInPGN(row, column));
             }
+        }
+
+        private void ResetRowAndColumn()
+        {
+            _currentRow = _chessPieceRow;
+            _currentColumn = _chessPieceColumn;
         }
     }
 }
