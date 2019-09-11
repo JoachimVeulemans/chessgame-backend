@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using ChessBackend.Data.DataEntities;
 
@@ -7,22 +8,66 @@ namespace ChessBackend.Entities.ChessGame
     public class ChessGame
     {
         public const int BOARDSIZE = 8;
-        public int Id { get; set; }
+        public string Id { get; set; }
         public Square[,] ChessBoard { get; set; }
         public MoveManager MoveManager { get; set; }
         public string Date { get; set; }
         public User WhitePlayer { get; set; }
         public User BlackPlayer { get; set; }
+        public User CurrentPlayer { get; set; }
+        public IList<Piece> LostPieces { get; set; }
 
-
-        public ChessGame(int id, User whitePlayer, User blackPlayer)
+        public ChessGame(User whitePlayer, User blackPlayer)
         {
-            Id = id;
+            Id = Guid.NewGuid().ToString();
             WhitePlayer = whitePlayer;
             BlackPlayer = blackPlayer;
             Date = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture);
             ResetChessBoard();
             MoveManager = new MoveManager(ChessBoard);
+            CurrentPlayer = WhitePlayer;
+        }
+
+        public void Move(Move move)
+        {
+
+            Square fromSquare = GetSquare(move.From);
+            Square toSquare = GetSquare(move.To);
+            Piece chessPieceToMove = fromSquare.ChessPiece;
+            fromSquare.ChessPiece = null;
+
+            if (toSquare.HasChessPiece)
+            {
+                LostPieces.Add(toSquare.ChessPiece);
+            }
+
+            toSquare.ChessPiece = chessPieceToMove;
+            UpdateCurrentPlayer();
+        }
+
+        private Square GetSquare(string position)
+        {
+            foreach(var square in ChessBoard)
+            {
+                if (square.Position.Equals(position))
+                {
+                    return square;
+                }
+            }
+
+            return null;
+        }
+
+        private void UpdateCurrentPlayer()
+        {
+            if(CurrentPlayer == WhitePlayer)
+            {
+                CurrentPlayer = BlackPlayer;
+            }
+            else
+            {
+                CurrentPlayer = WhitePlayer;
+            }
         }
 
         private void ResetChessBoard()
@@ -86,6 +131,11 @@ namespace ChessBackend.Entities.ChessGame
                     ChessBoard[row, column] = new Square(row, column);
                 }
             }
+        }
+
+        public bool IsCurrentPlayer(string id)
+        {
+            return CurrentPlayer.Id.Equals(id);
         }
     }
 }

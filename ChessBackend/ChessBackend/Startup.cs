@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChessBackend.Data;
 using ChessBackend.Data.DataEntities;
+using ChessBackend.Data.Reposities;
 using ChessBackend.Entities;
 using ChessBackend.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -73,6 +74,7 @@ namespace ChessBackend
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IChessService, ChessService>();
+            services.AddScoped<IRepository<User>, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
