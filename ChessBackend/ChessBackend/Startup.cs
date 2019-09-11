@@ -25,6 +25,7 @@ namespace ChessBackend
 {
     public class Startup
     {
+        private readonly string _allowedSpecificOrigins = "_allowedSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,6 +36,16 @@ namespace ChessBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(_allowedSpecificOrigins, builder =>
+                {
+                    builder
+                    .WithOrigins("https://chessgame.jocawebs.be")
+                    .AllowCredentials();
+                });
+            });
+
             services.Configure<TokenSettings>(Configuration.GetSection("Token"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<ChessContext>(options =>
@@ -90,6 +101,7 @@ namespace ChessBackend
                 app.UseHsts();
             }
 
+            app.UseCors(_allowedSpecificOrigins);
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
