@@ -32,10 +32,7 @@ namespace ChessBackend.Controllers
             var user = await _repository.GetById(ApplicationUtilities.GetUserIdFromHttpContext(HttpContext));
 
             //At the moment there is no way of inviting, so I'm using an internal dummy User as opponent
-            var users = await _repository.GetAll();
-            var user2 = users[0];
-
-            var gameId = _chessService.StartGame(user, user2);
+            var gameId = _chessService.StartGame(user, new Data.DataEntities.User());
             return Ok(gameId);
         }
 
