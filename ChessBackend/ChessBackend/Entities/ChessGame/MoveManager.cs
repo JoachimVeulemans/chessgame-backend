@@ -55,12 +55,19 @@ namespace ChessBackend.Entities.ChessGame
 
             //TODO Refactor
             AddMoveToList(_currentRow - 1, _currentColumn, kingMoves);          //Top
+            ResetRowAndColumn();
             AddMoveToList(_currentRow - 1, _currentColumn + 1, kingMoves);      //Topright
+            ResetRowAndColumn();
             AddMoveToList(_currentRow, _currentColumn + 1, kingMoves);          //Right
+            ResetRowAndColumn();
             AddMoveToList(_currentRow + 1, _currentColumn + 1, kingMoves);      //Bottomright
+            ResetRowAndColumn();
             AddMoveToList(_currentRow + 1, _currentColumn, kingMoves);          //Bottom
+            ResetRowAndColumn();
             AddMoveToList(_currentRow + 1, _currentColumn - 1, kingMoves);      //Bottomleft
+            ResetRowAndColumn();
             AddMoveToList(_currentRow, _currentColumn - 1, kingMoves);          //Left
+            ResetRowAndColumn();
             AddMoveToList(_currentRow - 1, _currentColumn - 1, kingMoves);      //Topleft
 
             return kingMoves;
@@ -263,7 +270,6 @@ namespace ChessBackend.Entities.ChessGame
             AddMoveToList(_currentRow + 1, _currentColumn + 2, knightMoves);
             ResetRowAndColumn();
             AddMoveToList(_currentRow - 1, _currentColumn + 2, knightMoves);
-            ResetRowAndColumn();
 
             return knightMoves;
         }
