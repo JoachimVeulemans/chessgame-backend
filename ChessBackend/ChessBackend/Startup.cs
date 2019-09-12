@@ -41,8 +41,9 @@ namespace ChessBackend
                 options.AddPolicy(_allowedSpecificOrigins, builder =>
                 {
                     builder
-                    .WithOrigins("https://chessgame.jocawebs.be")
-                    .AllowCredentials();
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
                 });
             });
 
