@@ -17,6 +17,13 @@ namespace ChessBackend.Data.DataEntities
         [PersonalData]
         public int Ties { get; set; }
 
+        [PersonalData]
+        public string FirstName { get; set; }
+        [PersonalData]
+        public string LastName { get; set; }
+        [PersonalData]
+        public string Language { get; set; }
+
         public IList<Game> GamesAsWhite { get; set; }
         public IList<Game> GamesAsBlack { get; set; }
     }
