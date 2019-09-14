@@ -4,14 +4,16 @@ using ChessBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChessBackend.Migrations
 {
     [DbContext(typeof(ChessContext))]
-    partial class ChessContextModelSnapshot : ModelSnapshot
+    [Migration("20190914164337_extend User information")]
+    partial class extendUserinformation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,8 +97,6 @@ namespace ChessBackend.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("Bio");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();

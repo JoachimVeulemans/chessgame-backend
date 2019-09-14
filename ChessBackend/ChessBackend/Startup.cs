@@ -41,8 +41,9 @@ namespace ChessBackend
                 options.AddPolicy(_allowedSpecificOrigins, builder =>
                 {
                     builder
-                    .WithOrigins("https://chessgame.jocawebs.be")
-                    .AllowCredentials();
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
                 });
             });
 
@@ -83,8 +84,12 @@ namespace ChessBackend
                 };
             });
 
+            //Adding Custom Services
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddSingleton<IChessService, ChessService>();
+            services.AddScoped<IUserService, UserService>();
+
+            //Adding Custom Repositories
             services.AddScoped<IRepository<User>, UserRepository>();
         }
 
@@ -104,7 +109,7 @@ namespace ChessBackend
             app.UseCors(_allowedSpecificOrigins);
             app.UseHttpsRedirection();
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
