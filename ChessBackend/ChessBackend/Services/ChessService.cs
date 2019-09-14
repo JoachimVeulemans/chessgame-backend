@@ -17,7 +17,7 @@ namespace ChessBackend.Services
         }
         public ChessGame GetChessGame(User player, string chessGameId)
         {
-            return ChessGames.Where(c => c.Id == chessGameId && (c.WhitePlayer.Id.Equals(player.Id) || c.BlackPlayer.Id.Equals(chessGameId))).FirstOrDefault();
+            return ChessGames.FirstOrDefault(c => c.Id == chessGameId && (c.WhitePlayer.Id.Equals(player.Id) || c.BlackPlayer.Id.Equals(chessGameId)));
         }
 
         public string StartGame(User WhitePlayer, User BlackPlayer)
@@ -32,12 +32,7 @@ namespace ChessBackend.Services
         {
             var chessGame = GetChessGame(player, chessGameId);
 
-            if(chessGame == null)
-            {
-                return new List<string>();
-            }
-
-            return chessGame.GetValidMoves(position);
+            return chessGame == null ? new List<string>() : chessGame.GetValidMoves(position);
         }
     }
 }
