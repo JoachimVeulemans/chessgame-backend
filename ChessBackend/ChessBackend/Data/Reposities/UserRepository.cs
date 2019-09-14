@@ -14,14 +14,41 @@ namespace ChessBackend.Data.Reposities
         {
             _chessContext = chessContext;
         }
-        public async Task<IList<User>> GetAll()
+
+        public async Task DeleteByIdAsync(string id)
+        {
+            var user = await GetByIdAsync(id);
+
+            if (user == null)
+                return;
+
+            _chessContext.Users.Remove(user);
+            await CommitAsync();
+        }
+
+        public async Task<IList<User>> GetAllAsync()
         {
             return await _chessContext.Users.ToListAsync();
         }
 
-        public async Task<User> GetById(string id)
+        public async Task<User> GetByIdAsync(string id)
         {
             return await _chessContext.Users.FindAsync(id);
+        }
+
+        public async Task UpdateAsync(User user)
+        {
+            var userToUpdate = await GetByIdAsync(user.Id);
+
+            if (userToUpdate == null)
+                return;
+
+            _chessContext.Entry(userToUpdate).CurrentValues.SetValues(user);
+        }
+
+        private async Task CommitAsync()
+        {
+            await _chessContext.SaveChangesAsync();
         }
     }
 }
