@@ -29,7 +29,7 @@ namespace ChessBackend.Controllers
         [HttpGet]
         public async Task<IActionResult> StartGame()
         {
-            var user = await _repository.GetById(ApplicationUtilities.GetUserIdFromHttpContext(HttpContext));
+            var user = await _repository.GetByIdAsync(ApplicationUtilities.GetUserIdFromHttpContext(HttpContext));
 
             //At the moment there is no way of inviting, so I'm using an internal dummy User as opponent
             var gameId = _chessService.StartGame(user, new Data.DataEntities.User());
@@ -45,7 +45,7 @@ namespace ChessBackend.Controllers
                 return BadRequest();
             }
 
-            var user = await _repository.GetById(ApplicationUtilities.GetUserIdFromHttpContext(HttpContext));
+            var user = await _repository.GetByIdAsync(ApplicationUtilities.GetUserIdFromHttpContext(HttpContext));
             return Ok(_chessService.GetPossiblePositions(user, getValidPositionsModel.GameId, getValidPositionsModel.Position));
         }
 
