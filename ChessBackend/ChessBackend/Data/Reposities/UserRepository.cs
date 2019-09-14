@@ -44,6 +44,7 @@ namespace ChessBackend.Data.Reposities
                 return;
 
             _chessContext.Entry(userToUpdate).CurrentValues.SetValues(user);
+            await CommitAsync();
         }
 
         private async Task CommitAsync()
