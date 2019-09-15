@@ -7,7 +7,9 @@ namespace ChessBackend.Data.Reposities
 {
     public interface IRepository<T>
     {
-        Task<IList<T>> GetAll();
-        Task<T> GetById(string id);
+        Task<IList<T>> GetAllAsync();
+        Task<T> GetByIdAsync(string id);
+        Task DeleteByIdAsync(string id);
+        Task UpdateAsync(T user);
     }
 }
