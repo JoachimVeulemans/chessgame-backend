@@ -1,38 +1,16 @@
 # C# - Backend - CD
 
-name: ASP.NET Core Build
+trigger:
+- master
 
-on:
-  pull_request:
-    branches:
-    - master
+pool:
+  vmImage: 'ubuntu-latest'
 
-jobs:
-  build_on_Ubuntu:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v1
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 2.2.108
-    - name: Build with dotnet
-      run: dotnet build ./ChessBackend --configuration Release
-
-      steps:
-        - uses: actions/checkout@v1
-        - name: Setup .NET Core
-          uses: actions/setup-dotnet@v1
-          with:
-            dotnet-version: 2.2.108
-        - name: Run xUnit tests with dotnet
-          run: dotnet test ./ChessBackend
-
-  build_on_Docker:  
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag chessgame-backend:$(date +%s)
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: 'DockerHub'
+    repository: 'joachimveulemans/chessgame'
+    command: 'buildAndPush'
+    Dockerfile: 'Dockerfile'
+    tags: 'backend'
