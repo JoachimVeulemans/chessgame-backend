@@ -1,38 +1,39 @@
 # C# - Backend - CI
 
-name: ASP.NET Core Build
+trigger:
+- master
 
-on:
-  pull_request:
-    branches:
-    - master
+pool:
+  vmImage: 'windows-latest'
 
-jobs:
-  build_on_Ubuntu:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v1
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 2.2.108
-    - name: Build with dotnet
-      run: dotnet build ./ChessBackend --configuration Release
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
 
-      steps:
-        - uses: actions/checkout@v1
-        - name: Setup .NET Core
-          uses: actions/setup-dotnet@v1
-          with:
-            dotnet-version: 2.2.108
-        - name: Run xUnit tests with dotnet
-          run: dotnet test ./ChessBackend
+steps:
+- task: NuGetToolInstaller@1
 
-  build_on_Docker:  
-    runs-on: ubuntu-latest
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
 
-    steps:
-    - uses: actions/checkout@v1
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag chessgame-backend:$(date +%s)
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'DockerHub'
+    repository: 'joachimveulemans/chessgame'
+    command: 'build'
+    Dockerfile: 'Dockerfile'
+    tags: 'backend'
