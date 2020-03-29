@@ -25,5 +25,8 @@ WORKDIR /app
 # 9 - Copy build project to current working directory
 COPY --from=build-env /app/out .
 
-# 10 - Set entrypoint commands
+# 10 - Expose port in container
+EXPOSE 80
+
+# 11 - Set entrypoint commands
 ENTRYPOINT ["dotnet", "ChessBackend.dll"]
