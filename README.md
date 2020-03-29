@@ -1,7 +1,4 @@
-[![Docker Build Status](https://img.shields.io/docker/cloud/build/joachimveulemans/chessgame-backend)](https://hub.docker.com/r/joachimveulemans/chessgame-backend/builds)
-[![Docker Automated Status](https://img.shields.io/docker/cloud/automated/joachimveulemans/chessgame-backend)](https://hub.docker.com/r/joachimveulemans/chessgame-backend)
-[![Docker Pulls Status](https://img.shields.io/docker/pulls/joachimveulemans/chessgame-backend)](https://hub.docker.com/r/joachimveulemans/chessgame-backend)
-[![Docker Stars Status](https://img.shields.io/docker/stars/joachimveulemans/chessgame-backend)](https://hub.docker.com/r/joachimveulemans/chessgame-backend)
+TODO
 
 # Chessgame Backend
 
