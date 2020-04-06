@@ -28,5 +28,8 @@ COPY --from=build-env /app/out .
 # 10 - Expose port in container
 EXPOSE 80
 
+# 11 - Label container so watchtower knows to use the SIGHUP signal because SIGTERM is not powerful enough
+LABEL com.centurylinklabs.watchtower.stop-signal="SIGHUP"
+
 # 11 - Set entrypoint commands
 ENTRYPOINT ["dotnet", "ChessBackend.dll"]
