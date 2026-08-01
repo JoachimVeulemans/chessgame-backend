@@ -15,18 +15,6 @@ This project is a collaboration between Joachim Veulemans and Ian Angillis. The 
 
 This repository will focus on the backend part of the project. This is written in ASP.NET Core 2.
 
-## Demo
-
-Navigate to [backend.chessgame.jocawebs.be/api](https://backend.chessgame.jocawebs.be/api) to test the website.
-
-## Project Status
-
-Navigate to [Trello](https://trello.com/b/k8dXRchw/chessproject) to view the projects status on Trello.
-
-## Docker Hub Status
-
-Navigate to [Docker Hub Backend](https://hub.docker.com/r/joachimveulemans/chessgame-backend) to view the Docker Hub status.
-
 ## Running the project locally
 
 ### Using Docker
